@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Angular List App</title>
+    <link rel="stylesheet" href="styles/styles.css" />
+</head>
+<body ng-app="app" ng-controller="ToDoController">
+
+<!-- To do list -->
+<ul class="item-container">
+
+    <li class="item header">
+        <p class="task">Task</p>
+        <p class="responsible" ng-click="orderByMe('responsible')">Responsible</p>
+        <p class="actions">Actions</p>
+    </li>
+
+    <li class="item done-{{todo.done}}" ng-repeat="todo in todos | orderBy: myOrderBy">
+        <p class="task">{{todo.text}}</p>
+        <p class="responsible">{{todo.responsible}}</p>
+        <div class="actions">
+            <i class="fa fa-check mark-done" aria-hidden="true" ng-click="itemDone(todo)"></i>
+            <i class="fa fa-trash delete" aria-hidden="true" ng-click="itemDelete(todo)"></i>
+        </div>
+    </li>
+
+</ul>
+
+<!-- Action button -->
+<button id="action-btn">
+    <i class="fa fa-plus" aria-hidden="true"></i>
+</button>
+
+<!-- Add new item window -->
+<div id="content-overlay"></div>
+
+<div id="add-item-modal">
+    <div class="container">
+        <p>Task name:</p>
+        <input id="taskName" type="text" ng-model="addTodoText" ng-model-instant/>
+        <p>Responsible:</p>
+        <select id = "responsibleList" ng-model="addTodoResponsible" ng-model-instant>
+            <option value = "Danielle">Danielle</option>
+            <option value = "Sarah">Sarah</option>
+            <option value = "Sjoerd">Sjoerd</option>
+        </select>
+        <button id="add-item" class="btn-1" ng-click="addTodo()">Add item</button>
+    </div>
+</div>
+
+<!-- ANGULAR: latest stable version, google CDN -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<!-- My script -->
+<script src="scripts/script.js"></script>
+<!-- FontAwesome icons -->
+<script src="https://use.fontawesome.com/9090f56a0a.js"></script>
+</body>
+</html>
+
